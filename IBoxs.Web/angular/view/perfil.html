@@ -1,0 +1,162 @@
+﻿<div class="row w-100 margin-botton15 centralizar-botoes-inputs" ng-init="Init();" style="margin-top:-5%;">
+    <h2 style="width: 100%; background-color: beige; margin-left: 1%;">Dados da conta</h2>
+    <form id="frmLoja" name="frmLoja" novalidate autocomplete="off" method="post" ng-submit="Salvar()" class="form-control-plaintext">
+        <fieldset>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="Id">Código da Loja*</label>
+                        <input type="text" ng-model="Loja.Id" id="Id" name="Id" ng-disabled="true" required="required" class="form-control input-sm float-left" placeholder="Código da loja" maxlength="20" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="Nome">Nome*</label>
+                        <input type="text" ng-model="Loja.Nome" id="Nome" name="Nome" ng-disabled="true"
+                               required="required" class="form-control input-sm float-left" placeholder="Nome da loja" maxlength="100" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="Cnpj">CPF/CNPJ*</label>
+                        <input type="text" ng-model="Loja.CNPJ" ng-disabled="true"
+                               id="Cnpj" name="Cnpj" required="required" class="form-control input-sm float-left" placeholder="Documento da loja" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="QtdMinima*">Qtd Mínima de Peças no carrinho</label>
+                        <input type="text" id="QtdMinima" name="QtdMinima" required="required" class="form-control input-sm float-left text-right"
+                               ng-model="Loja.QtdMinima" placeholder="Qtd de Itens" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="Integrador">Integrador Pagamento*</label>
+                        <select id="Integrador" name="Integrador" class="form-control input-sm" required ng-model="Loja.IntegradorPagamento"
+                                ng-options="s.Id as s.Nome for s in IntegradorPagamento"></select>
+
+                    </div>
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="TaxaBoleto">Taxa boleto</label>
+                        <input type="number" id="TaxaBoleto" name="TaxaBoleto" step="0.01" placeholder="Taxa de boleto"
+                               ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
+                               class="form-control input-sm float-left text-right" ng-model="Loja.TaxaBoleto" ng-bind="Loja.TaxaBoleto" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="ChavePublica">Chave Pública*</label>
+                        <input type="text" ng-model="Loja.PublicKey" required="required" id="ChavePublica" name="ChavePublica" class="form-control input-sm float-left" placeholder="Chave Pública" style="max-width:100% !important" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="TokenAcesso">Token de Acesso*</label>
+                        <input type="text" ng-model="Loja.AccessToken" required="required" id="TokenAcesso" name="TokenAcesso" class="form-control input-sm float-left" placeholder="Token de acesso" style="max-width:100% !important" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="FacebookPixel">Facebook Pixel</label>
+                        <input type="text" ng-model="Loja.IdFacebookPixel" id="FacebookPixel" name="FacebookPixel" class="form-control input-sm float-left"
+                               placeholder="Facebook Pixel" style="max-width:100% !important" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="cep">CEP*</label>
+                        <input type="text" maxlength="9" id="cep" name="cep" class="form-control input-sm float-left cep" data-mask="00000-000" required="required" ng-model="Loja.CEP" placeholder="CEP" />
+                        <button class="button-pesquisar-cep" title="Pesquisar CEP" ng-click="pesquisaCep($event)">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="endreco">Endereço*</label>
+                        <input type="text" id="endereco" name="endreco" maxlength="50" placeholder="Informe o logradouro"
+                               class="form-control input-sm float-left" required="required" ng-model="Loja.Logradouro" ng-bind="Loja.Logradouro" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="complemento">Número</label>
+                        <input type="text" id="numero" name="numero" maxlength="50" placeholder="Número do logradouro" style="width:80px!important"
+                               class="form-control input-sm float-left Numeros" ng-model="Loja.Numero" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="complemento">Complemento</label>
+                        <input type="text" id="complemento" name="complemento" maxlength="50" placeholder="Informe o complemento do endereço, se houver"
+                               class="form-control input-sm float-left" ng-model="Loja.Complemento" ng-bind="Loja.Complemento" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="bairro">Bairro*</label>
+                        <input type="text" id="bairro" name="bairro" maxlength="50" placeholder="Informe o bairro do endereço"
+                               class="form-control input-sm float-left" required="required" ng-model="Loja.Bairro" ng-bind="Loja.Bairro" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="cidade">Cidade*</label>
+                        <input type="text" id="cidade" name="cidade" maxlength="50" placeholder="Informe o nome da cidade"
+                               class="form-control input-sm float-left" required ng-model="Loja.Cidade" ng-bind="Loja.Cidade" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="estado">Estado*</label>
+                        <select id="estado" name="estado" class="form-control input-sm" required ng-model="Loja.Estado"
+                                ng-options="s.sigla as s.nome for s in ListaEstado"></select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="Whatsapp">Whatsapp*</label>
+                        <input type="text" id="Whatsapp" name="Whatsapp" maxlength="13" placeholder="Informe o Whatsapp" data-mask="00 00000-0000"
+                               class="form-control input-sm float-left" required ng-model="Loja.Whatsapp" ng-bind="Loja.Whatsapp" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="w-100 float-left" for="Email">Email*</label>
+                        <input type="email" id="Email" name="Email" maxlength="50" placeholder="Informe o Email"
+                               class="form-control input-sm float-left" required ng-model="Loja.Email" ng-bind="Loja.Email" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="w-100 float-left" for="VisualizaEstoque">Visualiza estoque</label>
+                        <input type="checkbox" id="VisualizaEstoque" name="VisualizaEstoque" ng-model="Loja.VerEstoque" checked="{{Loja.VerEstoque}}">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="w-100 float-left" for="PermiteRetira">Permite pagamento na retirada</label>
+                        <input type="checkbox" id="PermiteRetira" ng-model="Loja.PagamentoRetira" checked="{{Loja.PagamentoRetira}}">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="w-100 float-left" for="Logo">Logo da Loja - arquivo PNG (1700x100 pixel)</label>
+                        <input type="file" ng-model="Loja.Logo" id="Logo" name="Logo" class="form-control input-sm float-left" placeholder="Logo da loja" style="max-width:100% !important" accept="image/png, image/jpeg" file-upload />
+                        <img ng-src="./image/{{Loja.Logo}}" ng-if="Loja.Logo" style="width:370px; height:40px;" />
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="w-100 float-left" for="ShareMessage">Mensagem de Compartilhamento</label>
+                        <textarea type="text" id="ShareMessage" name="QuemSomos" maxlength="20" placeholder="Mensagem que será exibida ao compartilhar o link"
+                                  style="max-width:100% !important" class="form-control input-sm float-left height100px"
+                                  ng-model="Loja.MensagemCompartilhamento" ng-bind="Loja.MensagemCompartilhamento"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="w-100 float-left" for="QuemSomos">Quem Somos</label>
+                        <textarea type="text" id="QuemSomos" name="QuemSomos" maxlength="1000" placeholder=""
+                                  style="max-width:100% !important" class="form-control input-sm float-left height100px"
+                                  ng-model="Loja.QuemSomos" ng-bind="Loja.QuemSomos"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="w-100 float-left" for="PoliticaPrivacidade">Política de Privacidade</label>
+                        <textarea type="text" id="PoliticaPrivacidade" name="PoliticaPrivacidade" maxlength="1000" placeholder="" style="max-width:100% !important"
+                                  class="form-control input-sm float-left height100px" ng-model="Loja.PoliticaPrivacidade" ng-bind="Loja.PoliticaPrivacidade"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="w-100 float-left" for="PoliticaTrocaDevolucao">Política de Troca/Devolução</label>
+                        <textarea type="text" id="PoliticaTrocaDevolucao" name="PoliticaTrocaDevolucao" maxlength="1000" placeholder="" style="max-width:100% !important"
+                                  class="form-control input-sm float-left height100px" ng-model="Loja.PoliticaTrocaDevolucao" ng-bind="Loja.PoliticaTrocaDevolucao"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" ng-click="FecharCadastro()">Fechar</button>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+        </fieldset>
+    </form>
+</div>

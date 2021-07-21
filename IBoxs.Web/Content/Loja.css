@@ -1,0 +1,27 @@
+﻿body {
+}
+
+
+table {
+    width: 100% !important;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td, th {
+    width: 25%;
+}
+
+.sortorder:after {
+    content: '\25b2';
+    /*BLACK UP-POINTING TRIANGLE*/
+}
+
+.sortorder.reverse:after {
+    content: '\25bc';
+    /*BLACK DOWN-POINTING TRIANGLE*/
+}
+

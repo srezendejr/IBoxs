@@ -1,0 +1,97 @@
+﻿<div ng-init="CarregarProdutos()">
+    <div class="row margin-botton15">
+        <div class="a2a_kit a2a_kit_size_32 a2a_default_style centralizar-botoes-inputs">
+            <a class="a2a_button_facebook" title="Compartilhe com o Facebook"></a>
+            <a class="a2a_button_facebook_messenger" title="Compartilhe no messenger do Facebook"></a>
+            <a class="a2a_button_twitter" title="Compartilhe com o Twitter"></a>
+            <a class="a2a_button_whatsapp" title="Compartilhe com o Whatsapp"></a>
+            <a class="a2a_button_telegram" title="Compartilhe com o Telegram"></a>
+            <a class="a2a_button_copy_link" title="Copiar link"></a>
+        </div>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+    </div>
+    <div class="row w-100 margin-left10p margin-left0p margin-botton15">
+        <div class="col-md-3 margin-botton15" ng-repeat="p in ListaProdutos | filter: pesquisa">
+            <div class="box-moda border centralizar-carrossel-imagem">
+                <div id="carouselExampleIndicators{{p.Id}}" class="carousel slide"
+                     data-ride="carousel" data-keyboard="true" data-touch="true" data-interval="false">
+                    <ol class="carousel-indicators cor-invertida">
+                        <li data-target="#carouselExampleIndicators{{p.Id}}" ng-repeat="imagem in p.Imagens"
+                            data-slide-to="{{$index}}" ng-class="{'active': !$index}" style="border-radius: 7px !important; width: 14px !important;
+                                height: 14px !important;border-bottom: 0px !important; border-top: 0px !important;"></li>
+                    </ol>
+                    <div class="carousel-inner height360px">
+                        <div class="carousel-item text-center" ng-class="{'active': !$index}" ng-repeat="imagem in p.Imagens" style="text-align: -webkit-center!important;max-height:100%;">
+                            <img class="img-fluid d-block w-100" ng-src="data:image/png;charset=utf-8;base64,{{imagem}}" alt={{p.Nome}} style="max-height:360px; width:auto!important;">
+                        </div>
+                        <div class="etiqueta-desconto" ng-if="p.EhPromocao == true && p.ValorDesconto > 0">
+                            <label>-{{p.ValorDesconto}}%</label>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev navegaao-fotos" data-target="#carouselExampleIndicators{{p.Id}}" role="button" data-slide="prev" id="proximo">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next navegaao-fotos" data-target="#carouselExampleIndicators{{p.Id}}" role="button" data-slide="next" id="anterior">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Próximo</span>
+                    </a>
+                </div>
+                <div class="col-md-12">
+                    <label class="nome-produto" ng-model="p.Nome" ng-bind="p.Nome" id="Nome" name="Nome"></label>
+                    <label class="float-right" id="Ref" name="Ref" style="font-size:10px; margin-bottom:0px!important">Ref.: {{p.Id}}</label>
+                </div>
+                <div class="col-md-12 descritivoProduto" ng-if="p.DescritivoProduto.length > 0">
+                    <label ng-model="p.DescritivoProduto" ng-bind="p.DescritivoProduto" id="DescritivoProduto" name="DescritivoProduto"
+                           style="font-size:12px;"></label>
+                </div>
+                <div class="col-md-12">
+                    <label class="valor-produto" ng-model="p.Valor" id="Valor" name="Valor" ng-if="p.EhPromocao == true">{{p.ValorPromocao | currency: 'R$ '}}</label>
+                    <label class="valor-produto" ng-model="p.Valor" id="Valor" name="Valor" ng-if="p.EhPromocao != true">{{p.Valor | currency: 'R$ '}}</label>
+                    <label class="etiqueta-promo" ng-if="p.EhPromocao == true">Promo</label>
+                </div>
+                <div class="col-md-12" ng-if="p.EhPromocao == true">
+                    <label class="etiqueta-preco-antigo" ng-model="p.Valor" id="Valor" name="Valor">{{p.Valor | currency: 'R$ '}}</label>
+                </div>
+                <div class="col-md-12 margin-top7">
+                    <label>Quantidade:</label>
+                    <div class="value-button" id="decrease" ng-click="decreaseValue(p)" value="Decrease Value">
+                        <i class="fa fa-minus"></i>
+                    </div>
+                    <input type="number" id="Quantidade" value="0" class="quantidade" ng-model="p.Quantidade" ng-bind="p.Quantidade" name="Quantidade" />
+                    <div class="value-button" id="increase" ng-click="increaseValue(p)" value="Increase Value">
+                        <i class="fa fa-plus"></i>
+                    </div>
+                    <div ng-if="VerEstoque == true">
+                        <span style="color: #797575; font-size: 13px;" ng-if="p.QtdEstoque > 1">({{p.QtdEstoque}} disponíveis em estoque)</span>
+                        <span style="color: #797575; font-size: 13px;" ng-if="p.QtdEstoque <= 1">({{p.QtdEstoque}} disponível em estoque)</span>
+                    </div>
+                    <div ng-if="p.QtdMinima > 0">
+                        <span style="color: #797575; font-size: 13px;">Quantidade mínima para este produto: {{p.QtdMinima}}</span>
+                    </div>
+                </div>
+                <div class="col-md-12 margin-top7" ng-if="p.DescricaoTamanho !== ''">
+                    <label>{{p.DescricaoTamanho}}:</label>
+                    <select class="appearance-select" ng-init="p.TamanhoSelecionado = p.TamanhoSelecionado || p.Tamanhos[0]" ng-model="p.TamanhoSelecionado" ng-options="t for t in p.Tamanhos" id="Tamanhos" name="Tamanhos" ng-change="PesquisarEstoque(p)">
+                    </select>
+                </div>
+                <div class="col-md-12 margin-top7" ng-if="p.DescricaoCor !== ''">
+                    <label>{{p.DescricaoCor}}:</label>
+                    <select class="appearance-select-cor" ng-init="p.CorSelecionada = p.CorSelecionada || p.Cores[0]" ng-model="p.CorSelecionada" ng-options="c for c in p.Cores" id="Cores" name="Cores" ng-change="PesquisarEstoque(p)">
+                    </select>
+                </div>
+                <div class="col-md-12 margin-top7 margin-botton15">
+                    <label class="btn btn-danger" style="cursor:default" ng-disabled="true" ng-if="p.QtdEstoque <= 0 || p.QtdEstoque < p.Quantidade">Indisponível</label>
+                    <input type="button" value="Adicionar ao carrinho" class="button-comprar" ng-click="AdicionarCarrinho(p)" ng-if="p.QtdEstoque > 0 && p.QtdEstoque >= p.Quantidade" />
+                    <i class="fas fa-check check" ng-show="p.AdicionadoCarrinho == true"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+    var a2a_config = a2a_config || {};
+    a2a_config.templates || {};
+
+</script>

@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name="description" content="" />
+    <title>IBoxs</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="follow">
+    <meta name="keywords" content="caixa, negócio, ecommerce, compartilhameto, vendas, roupas" />
+    <meta name="author" content="Sérgio Rezende Júnior, Fabri Sistemas" />
+    <link rel="SHORTCUT ICON" href="~/Content/imagens/favicon.png" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/631a1d632a.js" crossorigin="anonymous"></script>
+    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+    <script src="~/Scripts/FacebookPixel.js"></script>
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrapcss")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/loja")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/popper")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/ui-route-core")
+    @Scripts.Render("~/bundles/ui-route")
+    @Scripts.Render("~/bundles/jquerymask")
+    @Styles.Render("~/bundles/toasterCss")
+    @Scripts.Render("~/bundles/Messaging")
+    @Styles.Render("~/Content/sweetalert")
+    @Scripts.Render("~/bundles/blockUI")
+    @Styles.Render("~/bundles/blockUIcss")
+    @Scripts.Render("~/bundles/modulos")
+    @Scripts.Render("~/bundles/cookies")
+</head>
+<body ng-app="appIBoxs">
+    <div class="navbar  position-fixed w-100 cabecalho" id="cabecalho">
+        <div class="container headercontainer">
+            <div class="navbar-header w-100">
+                <div class="w-100 position-absolute nome-empresa">
+                </div>
+                <div class="w-100 position-absolute">
+                    <div class="float-right padding-rigth16p padding-rigth5p" ng-if="CarrinhoCompra != undefined">
+                        <a href="#" ng-click="AbrirCarrinho($event, CarrinhoCompra)"
+                           class="cart position-absolute left70p left85p"
+                           ng-class="{'nao-permitido': CarrinhoCompra.length == 0, 'display-none': CarrinhoCompra == undefined}">
+                            <i class="fas fa-shopping-cart"></i>
+                            <label class="quantidade-carrinho" style="cursor:pointer">{{CarrinhoCompra.length}}</label>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container body-content container-fluid position-absolute margin-top8p margin-top26p margin-top15p w-100">
+        <a href="https://wa.me/55{{Whatsapp}}?text=" class="botao-whatsapp" target="_blank" id="btnWhats" title="Fale Conosco" ng-hide="Whatsapp === undefined">
+            <i style="margin-top:16px" class="fa fa-whatsapp"></i>
+        </a>
+        @RenderBody()
+
+        <footer>
+            <div class="quemsomos">
+                <a href="#" data-toggle="modal" data-target="#ModalQuemSomos" onclick="javascript: event.preventDefault();">Quem Somos</a>
+            </div>
+            <div class="politicaprivacidade">
+                <a href="#" data-toggle="modal" data-target="#ModalPoliticaPrivacidade" onclick="javascript: event.preventDefault();">Política de Privacidade</a>
+            </div>
+            <div class="trocadeolucoes">
+                <a href="#" data-toggle="modal" data-target="#ModalPoliticaTroca" onclick="javascript: event.preventDefault();">Trocas e Devoluções</a>
+            </div>
+            <p>&copy; @DateTime.Now.Year - IBOXS - Todos os direitos reservados</p>
+            <img src="~/Content/imagens/visa_cinza.png" width="40" height="20" style="float:left; margin-right:5px; margin-top:1%;" class="margin-left40p margin-left20p" />
+            <img src="~/Content/imagens/mastercard_cinza.png" width="40" height="20" style="float:left; margin-right:5px; margin-top:1%" />
+            <img src="~/Content/imagens/amex_cinza.png" width="40" height="20" style="float:left; margin-right:5px; margin-top:1%" />
+            <img src="~/Content/imagens/ssl-site-seguro.png" width="130" height="50" class="imgssl" />
+
+        </footer>
+    </div>
+    <div class="modal fade" id="ModalQuemSomos" tabindex="-1" aria-labelledby="ModalQuemSomosLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalQuemSomosLabel">Quem somos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{QuemSomos}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalPoliticaPrivacidade" tabindex="-1" aria-labelledby="ModalPolPrivaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalPolPrivaLabel">Política de Privacidade</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{PoliticaPrivacidade}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalPoliticaTroca" tabindex="-1" aria-labelledby="ModalPolTrocaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalPolTrocaLabel">Política de Troca e Devoluções</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{PoliticaTrocaDevolucao}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

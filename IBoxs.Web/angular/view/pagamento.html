@@ -1,0 +1,172 @@
+﻿<div class="row w-100 margin-botton15 centralizar-botoes-inputs margin-top-50px" ng-init="Init()" style="margin-top:-80px;">
+    <div class="botoes centralizar-botoes-pagamento left0">
+        <div class="width20p width30p float-left">
+            <input type="radio" name="payment" id="card" checked ng-click="tipoPagamento(4)">
+            <label for="card" class="label-checkbox" id="lblCartao">
+                <i class="fas fa-credit-card" aria-hidden="true"></i>
+                <span class="cartaocredito">Cartão Crédito</span>
+            </label>
+        </div>
+        <div class="width20p width30p float-left" style="left: 5%;position: relative;">
+            <input type="radio" name="payment" id="boleto" ng-click="tipoPagamento(1)">
+            <label for="boleto" class="label-checkbox" id="lblBoleto">
+                <i class="fas fa-barcode" aria-hidden="true"></i>
+                <span>Boleto</span>
+            </label>
+        </div>
+        <div class="width20p width30p float-left" style="left: 10%;position: relative;" ng-if="PagamentoRetira == true">
+            <input type="radio" name="payment" id="retira" ng-click="tipoPagamento(0)">
+            <label for="retira" class="label-checkbox" id="lblRetira">
+                <i class="fas fa-receipt" aria-hidden="true"></i>
+                <span class="cartaocredito">Pague na retirada</span>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="centralizar-botoes-inputs">
+    <form id="pay" name="pay" autocomplete="off" method="post" ng-submit="Pagar(pay, $event)" class="form-control-plaintext">
+        <fieldset>
+            <div class="row w-100 centralizar-botoes-inputs">
+                <label class="w-100 m-2 divisao">1 - Dados do comprador</label>
+            </div>
+            <div class="row w-100 centralizar-botoes-inputs">
+                <div class="float-left col-md-3" ng-show="pagamento.TipoPagamento == 4">
+                    <label for="cardNumber" class="w-100 float-left">Número do cartão*</label>
+                    <input type="text" id="cardNumber" name="cardNumber" data-checkout="cardNumber" onselectstart="return false" onpaste="return false"
+                           onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" placeholder="Informe sem espaço"
+                           maxlength="16" class="form-control float-left input-sm" title="Informe apenas os números do cartão de crédito" ng-required="pagamento.TipoPagamento == 4"
+                           ng-change="guessPaymentMethod(pagamento.NroCartao)" ng-keyup="guessPaymentMethod(pagamento.NroCartao)" ng-model="pagamento.NroCartao" />
+                    <div id="visa" class="float-left" ng-class="pagamento.MetodoPagamento">
+                        {{pagamento.MetodoPagamento}}
+                    </div>
+                </div>
+                <!--<div class="row w-100 centralizar-botoes-inputs">
+                </div>-->
+                <div class="float-left col-md-3" ng-show="pagamento.TipoPagamento == 4">
+                    <label for="cardExpirationMonth" class="float-left w-100">Data de validade*</label>
+                    <input type="text" id="cardExpirationMonth" name="cardExpirationMonth" data-checkout="cardExpirationMonth" onselectstart="return false" onpaste="return false"
+                           onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off maxlength="2"
+                           class="form-control input-sm Numeros float-left" title="Informe o mês do vencimento. Por exemplo, 01" min="1" max="12" placeholder="MM" ng-model="pagamento.MesVencimento"
+                           ng-required="pagamento.TipoPagamento == 4" />
+                    <input type="text" id="cardExpirationYear" name="cardExpirationYear" data-checkout="cardExpirationYear" onselectstart="return false" onpaste="return false"
+                           onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off maxlength="2"
+                           class="form-control input-sm Numeros float-left"
+                           title="Informe o ano de vencimento do cartão, com 2 dígitos" placeholder="AA" ng-model="pagamento.AnoVencimento"
+                           ng-required="pagamento.TipoPagamento == 4" />
+                </div>
+                <div class="col-md-3 float-left" ng-show="pagamento.TipoPagamento == 4">
+                    <label for="securityCode" class="w-100 float-left">Código de segurança*</label>
+                    <input type="text" id="securityCode" name="securityCode" data-checkout="securityCode" onselectstart="return false" onpaste="return false" placeholder="CVV"
+                           onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off maxlength="4" class="form-control input-sm Numeros float-left"
+                           pattern="[0-9]+$" title="Informe os três ou 4 dígitos do código de segurança, no verso do seu cartão" ng-model="pagamento.CodigoSeguranca"
+                           ng-required="pagamento.TipoPagamento == 4" style="width:80px!important;" />
+                    <div id="cvv" class="float-left paddingleft30 height40"></div>
+                </div>
+                <div class="col-md-3 float-left" ng-show="pagamento.TipoPagamento == 4">
+                    <label for="installments" class="w-100 float-left">Parcelas*</label>
+                    <select id="installments" class="form-control input-sm float-left" name="installments" ng-model="pagamento.Parcelas" ng-options="s.installments as s.recommended_message for s in CalculoParcelas"
+                            ng-required="pagamento.TipoPagamento == 4">
+                    </select>
+                </div>
+            </div>
+
+            <div class="row w-100 centralizar-botoes-inputs">
+                <div class="float-left col-md-3">
+                    <label for="cardholderName" class="w-100 float-left">{{LabelTitular}}</label>
+                    <input type="text" id="cardholderName" name="cardholderName" data-checkout="cardholderName" placeholder={{PlaceHolderTitular}}
+                           class="form-control input-sm float-left" maxlength="30" required="required" title="Informe o nome do comprador" ng-model="pagamento.NomeTitular" />
+                </div>
+                <div class="col-md-3 float-left">
+                    <label for="docType" class="w-100 float-left">Tipo de documento*</label>
+                    <select id="docType" name="docType" class="form-control input-sm" data-checkout="docType"
+                            ng-model="pagadorIdentificacao.TipoDoc" ng-options="s.id as s.name for s in tiposDocumentos track by s.name" ng-change="TamanhoDocumento(pagadorIdentificacao.TipoDoc)"></select>
+                </div>
+                <div class="col-md-3 float-left">
+                    <label for="docNumber" class="w-100 float-left">Número de documento*</label>
+                    <input type="text" id="docNumber" name="docNumber" data-checkout="docNumber" class="form-control input-sm float-left" placeholder="Informe sem espaço"
+                           title="Informe o documento sem pontos e sem espaço" required="required" ng-model="pagadorIdentificacao.NumeroDocumento" maxlength="{{TamanhoMaximoDocumento}}" />
+                </div>
+                <div class="col-md-3 float-left">
+                    <label for="email" class="w-100 float-left">E-mail*</label>
+                    <input type="email" id="email" name="email" class="form-control input-sm float-left" required="required" ng-model="pagador.Email" maxlength="50"
+                           placeholder="Informe email válido" />
+                </div>
+            </div>
+            <div class="row w-100 centralizar-botoes-inputs">
+                <div class="col-md-4">
+                    <label class="w-100 float-left" for="Whatsapp">Celular/Whatsapp*</label>
+                    <input type="text" id="Whatsapp" name="Whatsapp" maxlength="13" placeholder="Informe o Whatsapp" data-mask="00 00000-0000"
+                           class="form-control input-sm float-left" required ng-model="pagador.Whatsapp" ng-bind="pagador.Whatsapp" />
+                </div>
+            </div>
+            <div class="row w-100 centralizar-botoes-inputs margin-top10">
+                <label class="w-100 m-2 divisao">2 - Endereço comprador</label>
+            </div>
+            <div class="row w-100 centralizar-botoes-inputs">
+                <div class="col-md-4 float-left">
+                    <label class="w-100 float-left" for="cep">CEP*</label>
+                    <input type="text" maxlength="9" id="cep" name="cep" class="form-control input-sm float-left cep" data-mask="00000-000" required="required" ng-model="Endereco.Cep" placeholder="CEP" />
+                    <button class="button-pesquisar-cep" title="Pesquisar CEP" ng-click="pesquisaCep($event)">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+                <div class="col-md-4 float-left">
+                    <label class="w-100 float-left" for="endreco">Endereço*</label>
+                    <input type="text" id="endereco" name="endreco" maxlength="50" placeholder="Informe o logradouro"
+                           class="form-control input-sm float-left" required="required" ng-model="Endereco.Logradouro" ng-bind="Endereco.Logradouro" />
+                </div>
+                <div class="col-md-4 float-left">
+                    <label class="w-100 float-left" for="complemento">Número*</label>
+                    <input type="text" id="numero" name="numero" maxlength="50" placeholder="Número do logradouro" style="width:80px!important"
+                           class="form-control input-sm float-left Numeros" required="required" ng-model="Endereco.Numero" />
+                </div>
+            </div>
+            <div class="row w-100 centralizar-botoes-inputs">
+                <div class="col-md-4 float-left">
+                    <label class="w-100 float-left" for="complemento">Complemento</label>
+                    <input type="text" id="complemento" name="complemento" maxlength="50" placeholder="Informe o complemento do endereço, se houver"
+                           class="form-control input-sm float-left" ng-model="Endereco.Complemento" ng-bind="Endereco.Complemento" />
+                </div>
+                <div class="col-md-4 float-left">
+                    <label class="w-100 float-left" for="bairro">Bairro*</label>
+                    <input type="text" id="bairro" name="bairro" maxlength="50" placeholder="Informe o bairro do endereço"
+                           class="form-control input-sm float-left" required="required" ng-model="Endereco.Bairro" ng-bind="Endereco.Bairro" />
+                </div>
+                <div class="col-md-4 float-left">
+                    <label class="w-100 float-left" for="cidade">Cidade*</label>
+                    <input type="text" id="cidade" name="cidade" maxlength="50" placeholder="Informe o nome da cidade"
+                           class="form-control input-sm float-left" required ng-model="Endereco.Cidade" ng-bind="Endereco.Cidade" />
+                </div>
+                <div class="col-md-4 float-left">
+                    <label class="w-100 float-left" for="estado">Estado*</label>
+                    <select id="estado" name="estado" class="form-control input-sm" required ng-model="Endereco.Estado"
+                            ng-options="s.sigla as s.nome for s in ListaEstado"></select>
+                </div>
+            </div>
+            <div class="row w-100 centralizar-botoes-inputs margin-top10" ng-hide="pagamento.TipoPagamento == 0">
+                <label class="w-100 m-2 divisao">3 - Envio</label>
+            </div>
+            <div class="row w-100 centralizar-botoes-inputs margin-botton15" ng-hide="pagamento.TipoPagamento == 0">
+                <div class="col-md-4 float-left">
+                    <label class="w-100 float-left" for="tipoEnvio">Selecione o tipo de envio*</label>
+                    <select id="tipoEnvio" name="tipoEnvio" class="form-control input-sm" required ng-model="pagamento.TipoEnvio" ng-change="calculaFrete()"
+                            ng-options="s.id as s.nome for s in ListaTipoEnvio"></select>
+                </div>
+            </div>
+            <div class="row w-100 text-right">
+                <label class="col-md-12 font-weight-bold">Total Compras {{pagamento.ValorCompra | currency: 'R$ ' }}</label>
+                <label class="col-md-12 font-weight-bold" ng-if="pagamento.TipoPagamento != 0">Frete {{TotalFrente | currency: 'R$ ' }}</label>
+                <label class="col-md-12 font-weight-bold" ng-if="TotalFrente > 0">Entrega em até: {{pagamento.PrazoEntrega}} dia(s) útil(eis)</label>
+                <label class="col-md-12 font-weight-bold" ng-if="TotalFrente > 0">Data prevista para entrega {{pagamento.DataEntrega}}</label>
+                <label class="col-md-12 font-weight-bold" ng-hide="true">Taxa de boleto {{pagamento.TaxaBoleto | currency: 'R$ ' }}</label>
+                <label class="col-md-12 valor-total-produto">Total a pagar {{pagamento.TotalPagar | currency: 'R$ ' }}</label>
+            </div>
+            <div class="row centralizar-botoes-inputs margin-top10 margin-botton30">
+                <div class="w-100 botao-pagar">
+                    <button type="submit" class="submit-button" ng-hide="pagamento.TipoPagamento == 0">Pagar</button>
+                    <button type="submit" class="submit-button" ng-hide="pagamento.TipoPagamento !== 0">Concluir</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

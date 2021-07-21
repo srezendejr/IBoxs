@@ -1,0 +1,99 @@
+﻿<div id="loginPage" class="row margin-botton15 margin-rigth-90" style="margin-top:-5%" ng-init="Init();">
+    <form method="post" name="frmLogin" id="frmLogin" novalidate autocomplete="off" ng-submit="Autenticar()" class="form-control-plaintext w-50" style="margin-left:50%; margin-bottom:20%; margin-top:8%">
+        <div class="row" style="margin-left:0px!important">
+            <img src="~/../Content/imagens/BotaoGerenciarPerfil.png" style="width:auto" alt="Iboxs" />
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="w-100 float-left" for="Id">CNPJ/CPF ou Email*</label>
+                <input type="text" ng-model="Login.Id" ng-bind="Login.Id" id="Id" name="Id" required="required" class="form-control input-sm float-left" placeholder="CNPJ/CPF ou Email" maxlength="100" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label class="w-100 float-left" for="Id">Senha*</label>
+                <input type="password" ng-model="Login.Password" ng-bind="Login.Password" id="Senha" name="Senha" required="required" class="form-control input-sm float-left" />
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px!important">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary">Acessar</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" style="margin-top:10px!important">
+                <label>Não tem cadastro?<a href="/Login" data-toggle="modal" data-target="#ModalLoja" style="cursor:pointer;">Clique aqui.</a></label>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="modal fade" id="ModalLoja" tabindex="-1" aria-labelledby="ModalLojaLabel" aria-hidden="true">
+        <div class="modal-dialog" style="max-width:800px !important; top:-30px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalLojaLabel">Loja</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="frmLoja" name="frmLoja" novalidate autocomplete="off" method="post" ng-submit="Salvar()" class="form-control-plaintext">
+                    <fieldset>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="TipoDoc" class="w-100 float-left">Tipo de documento*</label>
+                                    <select id="TipoDoc" name="TipoDoc" class="form-control input-sm"
+                                            ng-model="Cadastro.TipoDoc" ng-options="s.id as s.name for s in tiposDocumentos" ng-change="TamanhoDocumento(Cadastro.TipoDoc)"></select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="Documento" class="w-100 float-left">Número de documento*</label>
+                                    <input type="text" id="Documento" name="Documento" class="form-control input-sm float-left" placeholder="Documento" data-mask="{{MascaraDocumento}}"
+                                           title="Informe o documento sem pontos e sem espaço" required="required" ng-model="Cadastro.Documento" maxlength="{{TamanhoMaximoDocumento}}" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="w-100 float-left" for="RazaoSocial">Razão Social<span ng-hide="Cadastro.TipoDoc != 1">*</span></label>
+                                    <input type="text" ng-model="Cadastro.RazaoSocial" id="RazaoSocial" name="RazaoSocial" ng-disabled="Cadastro.TipoDoc != 1" ng-required="Cadastro.TipoDoc == 1" class="form-control input-sm float-left" placeholder="Razão Social" maxlength="100" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="w-100 float-left" for="Nome" ng-hide="Cadastro.TipoDoc != 1">Nome Fantasia*</label>
+                                    <label class="w-100 float-left" for="Nome" ng-hide="Cadastro.TipoDoc == 1">Nome*</label>
+                                    <input type="text" ng-model="Cadastro.NomeFantasia" id="Nome" name="Nome" ng-required="true" class="form-control input-sm float-left"
+                                           placeholder="Nome" maxlength="100" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="email" class="w-100 float-left">E-mail*</label>
+                                    <input type="email" id="email" name="email" class="form-control input-sm float-left" required="required" ng-model="Cadastro.Email" maxlength="100"
+                                           placeholder="Informe email válido" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="w-100 float-left" for="Celular">Celular*</label>
+                                    <input type="text" id="Whatsapp" name="Celular" maxlength="13" placeholder="Informe o número do celular" data-mask="00 00000-0000"
+                                           class="form-control input-sm float-left" required ng-model="Cadastro.Celular" ng-bind="Cadastro.Celular" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="w-100 float-left" for="CriarSenha">Senha*</label>
+                                    <input type="password" id="CriarSenha" name="CriarSenha" maxlength="50" class="form-control input-sm float-left" required ng-model="Cadastro.Senha" ng-bind="Cadastro.Senha" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="w-100 float-left" for="ConfirmaSenha">Confirma Senha*</label>
+                                    <input type="password" id="ConfirmaSenha" name="ConfirmaSenha" maxlength="50" class="form-control input-sm float-left" required ng-model="Cadastro.ConfirmaSenha" ng-bind="Cadastro.ConfirmaSenha" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnFechar">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

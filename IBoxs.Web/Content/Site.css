@@ -1,0 +1,1102 @@
+﻿body {
+    padding-bottom: 30px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.box-moda {
+    border: 1px solid #c3c1c1;
+    width: 100%;
+    height: 100%;
+}
+
+.cabecalho {
+    z-index: 100;
+    /*background: #2a0cd2;*/
+    color: #ffff;
+    height: 90px;
+    /*background-image: url(../Content/imagens/CABEC_IBOXS_1920x100.png);*/
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.fab {
+    font-size: 30px;
+}
+
+    .fab > fa-whatsapp-square {
+        color: #25d366;
+    }
+
+    .fab > fa-instagram-square {
+        color: #25d366;
+    }
+
+.fas {
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+}
+
+    .fas.fa-shopping-cart {
+        transform: translate(0%,-75%);
+        font-size: 30px;
+    }
+
+a.cart {
+    color: #e6e2e2;
+    top: 30%;
+}
+
+    a.cart:hover {
+        color: #e6e2e2;
+        text-decoration: none;
+    }
+
+div.col-md-4.paddingleft0 {
+    padding-left: 0px;
+}
+
+.headercontainer {
+    height: 50px;
+    padding: 0px 0px 0px 0px !important;
+}
+
+.carousel-control-prev, .carousel-control-next {
+    background-color: #1e1f1f
+}
+
+.height400px {
+    height: 400px;
+}
+
+.height340px {
+    height: 340px;
+}
+
+.height360px {
+    height: 360px;
+}
+
+.cor-invertida {
+    color: #f00;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
+.botao-pesquisa {
+    transform: translate(50%,20%) !important;
+    float: right;
+    left: 65% !important;
+    color: #808080;
+    font-size: 20px !important;
+}
+
+.campo-pesquisa {
+    position: absolute;
+    top: 25%;
+    width: 53%;
+    max-width: 100%;
+}
+
+.logo {
+    width: 6%;
+    background-image: url(../image/AgasalhoPikachu.jpg);
+    background-repeat: no-repeat;
+}
+
+.nome-produto {
+    font-size: 15px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: bold;
+}
+
+.valor-produto {
+    line-height: 1em;
+    font-size: 42px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: bold;
+}
+
+.valor-total-produto {
+    line-height: 1em;
+    font-size: 25px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: bold;
+}
+
+.padding-left15p {
+    padding-left: 15% !important;
+}
+
+.padding-left16p {
+    padding-left: 16% !important;
+}
+
+.padding-rigth15p {
+    padding-right: 15% !important;
+}
+
+.padding-rigth16p {
+    padding-right: 16% !important;
+}
+
+.padding-rigth20p {
+    padding-right: 20% !important;
+}
+
+.margin-top10 {
+    margin-top: 10px;
+}
+
+.margin-top15 {
+    margin-top: 15px;
+}
+
+.margin-top7 {
+    margin-top: 7px;
+}
+
+.margin-botton15 {
+    margin-bottom: 15px;
+}
+
+.button-comprar {
+    background-color: transparent;
+    color: #435cda;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #201ee2;
+    border-radius: 4px;
+    font-size: larger;
+}
+
+.button-comprar-invertido {
+    background-color: #435cda;
+    color: #fff;
+}
+
+.appearance-select {
+    -webkit-appearance: none; /* Remove estilo padrão do Chrome */
+    -moz-appearance: none; /* Remove estilo padrão do FireFox */
+    appearance: none; /* Remove estilo padrão do FireFox*/
+    background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee; /* Imagem de fundo (Seta) */
+    background-position: 68px center; /*Posição da imagem do background*/
+    width: 100px; /* Tamanho do select, maior que o tamanho da div "div-select" */
+    height: 30px; /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+    border: 1px solid #ddd;
+}
+
+.appearance-select-cor {
+    -webkit-appearance: none; /* Remove estilo padrão do Chrome */
+    -moz-appearance: none; /* Remove estilo padrão do FireFox */
+    appearance: none; /* Remove estilo padrão do FireFox*/
+    background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-appearance.gif) no-repeat #eeeeee; /* Imagem de fundo (Seta) */
+    background-position: 180px center; /*Posição da imagem do background*/
+    width: 210px; /* Tamanho do select, maior que o tamanho da div "div-select" */
+    height: 30px; /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+    border: 1px solid #ddd;
+}
+
+.nao-permitido {
+    cursor: not-allowed;
+    pointer-events: none;
+    text-decoration: none;
+    color: black;
+}
+
+.value-button {
+    display: inline-block;
+    border: 1px solid #ddd;
+    margin: 0px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: bottom;
+    padding: 11px 0;
+    background: #eee;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+    .value-button > i {
+        font-size: x-small;
+        vertical-align: super;
+    }
+
+    .value-button:hover {
+        cursor: pointer;
+    }
+
+.quantidade::-webkit-inner-spin-button,
+.quantidade::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantidade {
+    text-align: center;
+    margin: 0px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #808080;
+}
+
+footer {
+    bottom: 0;
+    width: 120%;
+    height: auto;
+    border-top: solid 1px;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    /*opacity: 0.65;
+    -moz-opacity: 0.65;
+    filter: alpha(opacity=65);*/
+}
+
+    footer > .imgssl {
+        height: 50px;
+        width: 130px;
+        float: left;
+        background-color: transparent;
+    }
+
+    footer > .quemsomos {
+        width: 100%;
+        float: left;
+        text-align: center;
+    }
+
+    footer > .politicaprivacidade {
+        float: left;
+        width: 100%;
+        text-align: center;
+    }
+
+    footer > .trocadeolucoes {
+        float: left;
+        width: 100%;
+        text-align: center;
+    }
+
+    footer > p {
+        width: 100%;
+        text-align: center;
+        float: left;
+        font-size: 10px;
+    }
+
+.quantidade-carrinho {
+    transform: translate(100%,-20%);
+    float: right;
+    color: #d60909;
+    font-style: normal;
+    font-weight: bolder;
+    text-align: right;
+    position: relative;
+    font-size: 25px;
+}
+
+.total-Carrinho {
+    text-align: right;
+    padding: 0 !important;
+    height: 50px;
+}
+
+.height100px {
+    height: 100px !important;
+}
+
+.visa {
+    background: no-repeat center url("imagens/visa-logo-21.png");
+    color: transparent;
+    background-size: 100%;
+    transform: translate(25%,20%);
+    padding-left: 5%;
+}
+
+.master {
+    background: no-repeat center url("imagens/mastercard-logo-7-1.png");
+    color: transparent;
+    background-size: 100%;
+    transform: translate(25%,20%);
+    padding-left: 5%;
+    width: 8%;
+}
+
+.amex {
+    background: no-repeat center url("imagens/American-Express-logo-3.png");
+    color: transparent;
+    background-size: 100%;
+    transform: translate(25%,20%);
+    padding-left: 5%;
+}
+
+.dinners {
+    background: no-repeat center url("imagens/Diners-Club-Logo-9.png");
+    color: transparent;
+    background-size: 100%;
+    transform: translate(25%,20%);
+    padding-left: 5%;
+}
+
+.hipercard {
+    background: no-repeat center url("imagens/Hipercard-logo-1.png");
+    color: transparent;
+    background-size: 100%;
+    transform: translate(25%,20%);
+    padding-left: 5%;
+}
+
+.elo {
+    background: no-repeat center url("imagens/elo-logo-20.png");
+    color: transparent;
+    background-size: 100%;
+    transform: translate(25%,20%);
+    padding-left: 5%;
+}
+
+.cvv {
+    background: no-repeat center url("imagens/cvv2.jpg");
+    color: transparent;
+    background-size: 100%;
+    transform: translate(25%,20%);
+    padding-left: 5%;
+}
+
+.width50p {
+    width: 50%;
+}
+
+.width20p {
+    width: 20%;
+}
+
+.paddingbotton30 {
+    padding-bottom: 30px;
+}
+
+.botoes {
+    width: 80%;
+    padding: 0 0 0 0;
+    /*margin-left: 10%;
+    padding-left: 10%;*/
+    padding-right: 10%;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+}
+
+.label-checkbox {
+    height: 75px;
+    width: 100%;
+    border: 2px solid gray;
+    position: relative;
+    margin: auto;
+    border-radius: 10px;
+    color: #7e7e7e;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.fas {
+    font-size: 45px;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%,-50%);
+}
+
+label.label-checkbox > span {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-10%,70%);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%
+}
+
+label > span.cartaocredito {
+    transform: translate(-15%,10%);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    width: 100px;
+}
+
+input[type="radio"]:checked + label {
+    border: 2px solid #639bd0;
+    color: #639bd0;
+    background-color: #e6e6e6;
+}
+
+.centralizar-botoes-pagamento {
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    display: block;
+    position: relative;
+    left: 20%;
+}
+
+.centralizar-botoes-inputs {
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    /*display: block;*/
+    position: relative;
+    left: 5% !important;
+}
+
+.paddingleft30 {
+    padding-left: 30px;
+}
+
+.paddingleft50 {
+    padding-left: 50px;
+}
+
+.paddingleft0 {
+    padding-left: 0px !important;
+}
+
+.height40 {
+    height: 40px;
+}
+
+.validacaoError {
+    background: no-repeat 10px 5px url("imagens/3643775-caution-exclamation-mark-sign-triangle_113444.png");
+    background-color: #fff;
+    background-size: 8%;
+    border-radius: 28px 30px 30px 28px;
+    width: 70%;
+    height: 50%;
+    /* Position relative para a seta não exceder os limites do balão, já que vamos usar position absolute nele */
+    position: relative;
+    text-align: center;
+    margin-left: 10px;
+    border: 1px solid #af1414;
+    padding-left: 30px;
+}
+
+/*.validacaoError:after {
+        content: "";
+        width: auto;
+        height: auto;*/
+/* position: absolute para manipularmos a posição da seta */
+/*position: absolute;*/
+/* Right com valor negativo para ele ficar para fora do balão de dialogo */
+/*left: -7px;*/
+/* E aqui o truque com as bordas */
+/*border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 10px solid #af1414;
+        border-radius: 10%;
+        top: -1px;
+    }*/
+
+
+.balao2 {
+    margin: 0 auto;
+    background: #7e57c2;
+    font-family: 'open sans';
+    font-size: 0.85em;
+    line-height: 1.6em;
+    border-radius: 15px;
+    width: 300px;
+    height: auto;
+    color: #fff;
+    padding: 20px;
+    position: relative;
+    margin-top: 30px;
+}
+
+    .balao2:after { /*Triangulo*/
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        /*Faz seta "apontar para baixo. Definir o valor como 'top' fará ela "apontar para cima" */
+        /*Aqui entra a cor da "aba" do balão */
+        border-bottom: 20px solid #7e57c2;
+        top: -20px; /*localização. Experimente alterar para 'bottom'*/
+        left: 20%;
+    }
+
+
+.Numeros {
+    width: 60px !important;
+    text-align: right !important;
+}
+
+.divisao {
+    color: #725bc2;
+    font-weight: 700;
+    font-size: 30px;
+}
+
+.cep {
+    width: 110px !important;
+}
+
+.margin-rigth-90 {
+    margin-right: 90px !important;
+}
+
+.submit-button {
+    display: inline-block;
+    margin-bottom: 0;
+    font-size: 25px;
+    line-height: 1.6;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    border: 1px solid #50b232;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-box-shadow: inset 0 -5px 0 rgba(0,0,0,.1);
+    box-shadow: inset 0 -5px 0 rgba(0,0,0,.1);
+    text-decoration: none;
+    outline: none;
+    -webkit-transition: all .6s cubic-bezier(.2,1,.22,1);
+    -o-transition: all .6s cubic-bezier(.2,1,.22,1);
+    transition: all .6s cubic-bezier(.2,1,.22,1);
+    padding: 10px 60px 15px;
+    border-radius: 6px;
+    /*color: #fff;
+    background: #7cd063;*/
+    background-color: #435cda;
+    color: #fff;
+}
+
+.botao-pagar {
+    margin-left: 40%
+}
+
+.barra-pesquisa-fixa {
+    position: fixed;
+    z-index: 100;
+}
+
+.margin-top8p {
+    margin-top: 8%;
+}
+
+.margin-botton30 {
+    margin-bottom: 30px;
+}
+
+.margin-botton65 {
+    margin-bottom: 65px;
+}
+
+.nome-empresa {
+    color: #f9f9f9;
+    font-weight: bolder;
+    font-size: x-large;
+    top: 30%;
+    max-width: 50%;
+    white-space: nowrap;
+    left: 25%;
+    overflow: hidden;
+}
+
+    .nome-empresa > label {
+        margin-left: 16%;
+        margin-bottom: 30px;
+    }
+
+.margin-left15p {
+    margin-left: 15% !important;
+}
+
+.margin-left40p {
+    margin-left: 40% !important;
+}
+
+.left70p {
+    left: 70%;
+}
+
+.display-none {
+    display: none;
+}
+
+.cart > a:hover {
+    color: #07906a !important;
+}
+
+.check {
+    font-size: 20px !important;
+    color: #0bea0b;
+    left: 44%;
+    display: block;
+    position: absolute;
+}
+
+.botao-whatsapp {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 1px 1px 2px #888;
+    z-index: 1000;
+}
+
+.margin-left4p {
+    margin-left: 4% !important;
+}
+
+.margin-left10p {
+    margin-left: 10% !important;
+}
+
+.nome-produto-carrinho {
+    font-size: 20px;
+    margin-bottom: 0 !important;
+    font-weight: 600;
+    width: 100%;
+}
+
+.reticencias {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: break-word !important;
+    display: block;
+    max-width: 70% !important;
+    height: 5% !important;
+}
+
+.valor-produto-carrinho {
+    font-size: 20px;
+    margin-bottom: 0 !important;
+    font-weight: 600;
+    text-align: right;
+}
+
+.tamanho-item-carrtinho {
+    position: absolute !important;
+    margin-top: 3%;
+    left: 18%;
+    max-width: 50%;
+}
+
+.cor-item-carrtinho {
+    position: absolute !important;
+    margin-top: 3%;
+    left: 35%;
+    max-width: 50%;
+}
+
+.valor-item-carrinho {
+    max-width: 18% !important;
+}
+
+.button-pesquisar-cep {
+    width: 38px;
+    height: 38px;
+    background-color: #dadada;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 20px !important;
+    border-color: transparent;
+    border-width: 0px;
+    color: #495057;
+}
+
+.whatsapp-share-button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    background-size: 100% 100%; /* ou 'contain' */
+    /*background-image: url("https://1.bp.blogspot.com/-m8oifiCYyqc/WvI0FdiW4gI/AAAAAAAAH1Q/DY6EpI3la1Mi4I_WgXVyURIbooY-7UfPACLcBGAs/s1600/whatsapp-icon-png-iconfinder.png");*/
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+td div.showstatus {
+    border-radius: 30%;
+    width: 100%;
+    -webkit-border-radius: 100px;
+    text-align: center;
+    color: white;
+}
+
+.ativo {
+    background-color: #4CAF50 !important;
+}
+
+.inativo {
+    background-color: #ff0018bf !important;
+}
+
+.produto-indisponivel {
+    cursor: default;
+    float: left;
+    position: absolute;
+    left: 40%;
+}
+
+.descritivoProduto {
+    margin-top: -15px !important;
+}
+
+.navegaao-fotos {
+    border-radius: 30px !important;
+    width: 35px !important;
+    height: 35px !important;
+    top: 50% !important;
+    background-color: #787d7d !important;
+}
+
+.etiqueta-desconto {
+    background-color: red;
+    position: absolute;
+    color: white;
+    width: 45px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.etiqueta-promo {
+    background-color: red;
+    color: white;
+    position: absolute;
+    padding: 5px 5px 5px 5px;
+    font-weight: bolder;
+}
+
+.etiqueta-preco-antigo {
+    margin-bottom: 0px;
+    color: #a9a9a994;
+    text-decoration: line-through;
+}
+
+@media (max-width: 1300px) {
+    label.label-checkbox > span {
+        font-size: 10px;
+        left: 20%;
+        margin: 0;
+        top: 100%;
+        transform: translate(-30%,10%);
+        width: 100px;
+        text-align: center;
+    }
+
+    .fas {
+        font-size: 45px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .valor-produto {
+        font-size: 18px;
+        margin-bottom: 0px !important;
+    }
+
+    .nome-produto {
+        font-size: 18px;
+        margin-bottom: 0px !important;
+    }
+
+    .valor-produto-carrinho {
+        font-size: 15px;
+    }
+
+    .descritivoProduto {
+        margin-top: -5px !important;
+    }
+
+    .etiqueta-desconto {
+        margin-left: 20%;
+    }
+}
+
+@media (max-width: 400px) {
+    .check {
+        left: 72% !important;
+    }
+
+    footer {
+        height: 40px;
+        width: 100%;
+    }
+
+    .botao-whatsapp {
+        right: 7px;
+    }
+
+    .cabecalho {
+        background-size: 30% 92px;
+    }
+}
+
+@media (max-width: 670px) {
+    .cabecalho {
+        background-size: 200% 100%;
+    }
+
+
+    footer > .imgssl {
+        height: 30px;
+        width: 73px;
+    }
+
+    .nome-empresa > label {
+        display: none;
+    }
+
+    .margin-top15p {
+        margin-top: 15%;
+    }
+
+    .produto-indisponivel {
+        margin-top: 29%;
+        width: 30%;
+        left: 61%;
+    }
+}
+
+@media (max-width: 600px) {
+    .logo {
+        width: 14%;
+        background-image: url(/../image/AgasalhoPikachu.jpg);
+        background-repeat: no-repeat;
+    }
+
+    .cabecalho {
+        background-size: 300% 80px;
+    }
+
+    .width30p {
+        width: 30%;
+    }
+
+    .padding-left5p {
+        padding-left: 5% !important;
+    }
+
+    .padding-rigth5p {
+        padding-right: 5% !important;
+    }
+
+    .padding0 {
+        padding: 0 !important;
+    }
+
+    footer {
+        margin-top: 15px;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 10px;
+        width: 100%;
+    }
+
+    .campo-pesquisa {
+        width: 75%;
+        left: 6%
+    }
+
+    .botao-pesquisa {
+        transform: translate(-50%,-50%);
+        left: 71% !important;
+        font-size: 25px;
+    }
+
+    .quantidade-carrinho {
+        transform: translate(-10%,-40%);
+        z-index: 100;
+    }
+
+    .padding-right30px {
+        padding-right: 30px;
+    }
+
+    .total-Carrinho {
+        text-align: center;
+        padding: 0;
+    }
+
+    .resmuo-sem-margem {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+
+    .label-checkbox {
+        width: 100%;
+        height: 60px;
+    }
+
+    .fa {
+        left: 50%;
+        font-size: 30px;
+    }
+
+    label > .fas {
+        left: 50%;
+        font-size: 38px;
+    }
+
+    .Numeros {
+        width: 65px;
+    }
+
+    .botao-pagar {
+        margin-left: 20%
+    }
+
+    .fas.fa-shopping-cart {
+        transform: translate(-50%,-100%);
+        font-size: 30px;
+    }
+
+    .margin-top26p {
+        margin-top: 26%;
+    }
+
+    .nome-empresa {
+        top: 10%;
+        left: 30%;
+    }
+
+        .nome-empresa > label {
+            margin-left: 8%;
+            color: #5492ed;
+            display: none;
+        }
+
+    .margin-left0p {
+        margin-left: 0% !important;
+    }
+
+    .left85p {
+        left: 85%;
+    }
+
+    .check {
+        left: 64%;
+    }
+
+    .alterar-quantidade-carrinho {
+        max-width: 50%;
+        margin-left: 15%;
+        position: absolute !important;
+        margin-top: 10%;
+    }
+
+    .valor-item-carrinho {
+        max-width: 30% !important;
+        position: absolute !important;
+        margin-top: 10%;
+        left: 65%;
+    }
+
+    .tamanho-item-carrtinho {
+        margin-top: 20%;
+        left: 24%;
+    }
+
+    .cor-item-carrtinho {
+        margin-top: 20%;
+        left: 50%;
+    }
+
+    .botao-remover-item-carrtinho {
+        margin-top: 8%;
+    }
+
+    .valor-total-produto {
+        font-size: 20px;
+    }
+
+    .valor {
+        top: 0px;
+        position: absolute;
+    }
+
+    .margin-left20p {
+        margin-left: 20% !important;
+    }
+
+    .left0 {
+        left: 0% !important;
+    }
+
+    .divisao {
+        font-size: 25px;
+    }
+
+    .centralizar-botoes-inputs {
+        left: 0% !important;
+    }
+}
+
+@media (min-width: 1500px) {
+
+    .container, .container-sm, .container-md, .container-lg, .container-xl {
+        max-width: 1590px !important;
+    }
+
+    .check {
+        left: 83%;
+        position: absolute;
+    }
+
+    .carousel-inner {
+        width: 65% !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .box-moda {
+        border: 1px solid #c3c1c1;
+        width: 80%;
+        height: 100%;
+    }
+
+    .height360px {
+        height: 300px;
+    }
+
+    .centralizar-carrossel-imagem {
+        margin-left: auto;
+        margin-right: auto;
+        vertical-align: middle;
+        display: block;
+        position: relative;
+        left: 5% !important;
+    }
+}

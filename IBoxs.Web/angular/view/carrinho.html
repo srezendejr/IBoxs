@@ -1,0 +1,48 @@
+﻿<div ng-init="AbrirCarrinho()">
+    <div class="row w-100 margin-left10p margin-left0p margin-botton15" ng-repeat="item in CarrinhoCompra | filter: pesquisa">
+        <div class="row-cols-1">
+            <img class="img-fluid d-block float-left" ng-src="data:image/png;base64,{{item.Imagens[0]}}" height="80" width="80" alt={{item.Nome}} style="height:80px;">
+        </div>
+        <div class="col-md-6 reticencias">
+            <label class="nome-produto-carrinho" ng-model="item.NomeProduto" ng-bind="item.NomeProduto" id="Nome" name="Nome" style="width:80% !important;"></label>
+        </div>
+        <label class="btn btn-danger produto-indisponivel"
+               ng-disabled="true" ng-if="item.QtdEstoque <= 0 || item.QtdEstoque < item.QuantidadeProduto">Produto indisponível</label>
+        <div class="col-md-2 alterar-quantidade-carrinho float-left text-center">
+            <div class="value-button" id="decrease" ng-click="decreaseValue(item)" value="Decrease Value">
+                <i class="fa fa-minus"></i>
+            </div>
+            <input type="number" id="Quantidade" value="0" class="quantidade" ng-model="item.QuantidadeProduto" ng-bind="item.QuantidadeProduto" name="Quantidade" disabled />
+            <div class="value-button" id="increase" ng-click="increaseValue(item)" value="Increase Value">
+                <i class="fa fa-plus"></i>
+            </div>
+        </div>
+        <div class="col-md-3 valor-item-carrinho float-left text-right">
+            <label class="float-right valor-produto-carrinho" ng-model="item.ValorTotal" id="Valor" name="Valor">{{item.ValorTotal | currency: 'R$ '}}</label>
+        </div>
+        <div class="col-md-2 tamanho-item-carrtinho float-left text-left">
+            <label>Tam.: <b>{{item.TamanhoSelecionado}}</b></label>
+        </div>
+        <div class="col-md-2 cor-item-carrtinho float-left text-left">
+            <label>Cor: <b>{{item.CorSelecionada}}</b></label>
+        </div>
+        <div class="col-md-12 botao-remover-item-carrtinho float-left margin-botton15 margin-top15 paddingleft0">
+            <input type="button" value="Remover do carrinho" class="button-comprar" ng-click="RemoverItem(item)" />
+        </div>
+    </div>
+    <div class="row w-100 resmuo-sem-margem">
+        <div class="col-md-12 total-Carrinho">
+            <label class="valor-total-produto">Total Carrinho: {{TotalCarrinho()| currency: 'R$ '}}</label>
+        </div>
+    </div>
+    <div class="row w-100 resmuo-sem-margem">
+        <div class="col-md-12 total-Carrinho">
+            <input type="button" value="Continuar comprando" class="button-comprar" ng-click="ContinuarComprando()" />
+        </div>
+    </div>
+    <div class="row w-100 height100px resmuo-sem-margem">
+        <div class="col-md-12 total-Carrinho">
+            <input type="button" value="Finalizar compra" class="button-comprar button-comprar-invertido" ng-click="FecharComprar($event)" />
+        </div>
+    </div>
+</div>
